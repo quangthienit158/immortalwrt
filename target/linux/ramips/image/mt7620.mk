@@ -148,6 +148,15 @@ define Device/bdcom_wap2100-sk
 endef
 TARGET_DEVICES += bdcom_wap2100-sk
 
+define Device/bolt_bl201
+  SOC := mt7620a
+  IMAGE_SIZE := 15872k
+  DEVICE_VENDOR := Bolt
+  DEVICE_MODEL := BL201
+  DEVICE_PACKAGES := kmod-mt76x2
+endef
+TARGET_DEVICES += bolt_bl201
+
 define Device/buffalo_whr-1166d
   SOC := mt7620a
   IMAGE_SIZE := 16064k
@@ -1472,6 +1481,18 @@ define Device/zte_q7
   SUPPORTED_DEVICES += zte-q7
 endef
 TARGET_DEVICES += zte_q7
+
+define Device/zyxel_keenetic-lite-iii-a
+  SOC := mt7620n
+  IMAGE_SIZE := 7872k
+  DEVICE_VENDOR := ZyXEL
+  DEVICE_MODEL := Keenetic Lite III
+  DEVICE_VARIANT := A
+  IMAGES += factory.bin
+  IMAGE/factory.bin := $$(sysupgrade_bin) | pad-to 64k | check-size | \
+		zyimage -d 2102018 -v "ZyXEL Keenetic Lite III"
+endef
+TARGET_DEVICES += zyxel_keenetic-lite-iii-a
 
 define Device/zyxel_keenetic-omni
   SOC := mt7620n
