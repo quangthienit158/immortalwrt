@@ -4,13 +4,13 @@ I18N = require "luci.i18n"
 translate = I18N.translate
 
 function index()
-	entry({"admin", "modem"}, firstchild(), translate("移动数据"), 25).dependent=false
-	entry({"admin", "modem", "prof"}, cbi("rooter/profiles"), translate("DNS / APN / 监控配置"), 2)
-	entry({"admin", "modem", "nets"}, template("rooter/net_status"), translate("信号状态 / 模块状态"), 30)
-	entry({"admin", "modem", "debug"}, template("rooter/debug"), translate("后台AT调试信息"), 50)
-	entry({"admin", "modem", "cust"}, cbi("rooter/customize"), translate("自定义模块端口配置"), 55)
-	entry({"admin", "modem", "log"}, template("rooter/log"), translate("连接日志"), 60)
-	entry({"admin", "modem", "misc"}, template("rooter/misc"), translate("锁频段 / 锁PCI / 切协议"), 40)
+	entry({"admin", "modem"}, firstchild(), translate("Modem"), 25).dependent=false
+	entry({"admin", "modem", "prof"}, cbi("rooter/profiles"), translate("Connection Profile"), 2)
+	entry({"admin", "modem", "nets"}, template("rooter/net_status"), translate("Network Status"), 30)
+	entry({"admin", "modem", "debug"}, template("rooter/debug"), translate("Debug Information"), 50)
+	entry({"admin", "modem", "cust"}, cbi("rooter/customize"), translate("Custom Modem Ports"), 55)
+	entry({"admin", "modem", "log"}, template("rooter/log"), translate("Connection Log"), 60)
+	entry({"admin", "modem", "misc"}, template("rooter/misc"), translate("Miscellaneous"), 40)
 	
 	entry({"admin", "modem", "block"},
 		template("rooter/bandlock"))
@@ -478,9 +478,9 @@ function action_get_csq()
 	end
 
 	if not nixio.fs.access("/etc/netspeed") then
-		rv["crate"] = translate("快速(每10秒更新一次)")
+		rv["crate"] = translate("Fast (updated every 10 seconds)")
 	else
-		rv["crate"] = translate("缓慢(每60秒更新一次)")
+		rv["crate"] = translate("Slow (updated every 60 seconds)")
 	end
 
 	stat = "/tmp/msimdata" .. modnum

@@ -10,7 +10,7 @@ function index()
 																	 
 	if not fs.stat("/etc/nosms") then
 		local page
-		page = entry({"admin", "modem", "sms"}, template("rooter/sms"), translate("短信功能"), 35)
+		page = entry({"admin", "modem", "sms"}, template("rooter/sms"), translate("SMS Messaging"), 35)
 		page.dependent = true
 	 
 	end
